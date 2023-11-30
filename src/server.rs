@@ -29,10 +29,9 @@ impl Greeter for MyGreeter {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-
     let reflection_server = tonic_reflection::server::Builder::configure()
-    .register_encoded_file_descriptor_set(HELLOWORLD_DESCRIPTOR_SET)
-    .build()?;
+        .register_encoded_file_descriptor_set(HELLOWORLD_DESCRIPTOR_SET)
+        .build()?;
 
     let addr = "[::1]:50051".parse()?;
     let greeter = MyGreeter::default();
@@ -44,4 +43,4 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .await?;
 
     Ok(())
-}   
+}

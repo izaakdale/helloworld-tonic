@@ -229,7 +229,9 @@ pub mod greeter_server {
                             request: tonic::Request<super::HelloRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut = async move { (*inner).say_hello(request).await };
+                            let fut = async move {
+                                <T as Greeter>::say_hello(&inner, request).await
+                            };
                             Box::pin(fut)
                         }
                     }
